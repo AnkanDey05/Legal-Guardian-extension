@@ -180,7 +180,7 @@ Once downloaded, **extract the ZIP** to a permanent location on your computer. D
 **Option B — Clone with Git**
 
 ```bash
-[git clone https://github.com/AnkanDey05/legal-guardian.git](https://github.com/AnkanDey05/Legal-Guardian-extension)
+git clone https://github.com/AnkanDey05/legal-guardian.git](https://github.com/AnkanDey05/Legal-Guardian-extension
 ```
 
 ---
