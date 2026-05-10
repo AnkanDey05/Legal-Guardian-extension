@@ -1,0 +1,134 @@
+/* content.css - Injected into all web pages */
+
+#legal-guardian-floating-btn {
+  position: absolute;
+  z-index: 2147483647; /* Max z-index */
+  background: #0f1115;
+  color: #e2e8f0;
+  border: 1px solid #2a2d35;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif, -apple-system, BlinkMacSystemFont;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.2s;
+  pointer-events: auto;
+}
+
+#legal-guardian-floating-btn:hover {
+  background: #1a1d24;
+}
+
+#legal-guardian-floating-btn svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+/* Modal Overlay */
+#legal-guardian-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 2147483646;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(2px);
+}
+
+/* Iframe to isolate CSS */
+#legal-guardian-modal-iframe {
+  width: 380px;
+  height: 600px;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  background: #0f1115;
+}
+
+/* Toast Notification */
+#legal-guardian-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #1a1d24;
+  border: 1px solid #2a2d35;
+  border-radius: 12px;
+  padding: 16px;
+  width: 320px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  z-index: 2147483647;
+  font-family: 'Inter', sans-serif, -apple-system, BlinkMacSystemFont;
+  color: #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transform: translateY(100px);
+  opacity: 0;
+  animation: slideUpToast 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideUpToast {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.lg-toast-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.lg-toast-icon {
+  font-size: 18px;
+}
+
+.lg-toast-body {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #94a3b8;
+}
+
+.lg-toast-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.lg-toast-btn {
+  flex: 1;
+  padding: 8px 0;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s;
+}
+
+.lg-toast-btn.primary {
+  background: #4f46e5;
+  color: #fff;
+}
+.lg-toast-btn.primary:hover {
+  background: #4338ca;
+}
+
+.lg-toast-btn.secondary {
+  background: transparent;
+  color: #e2e8f0;
+  border: 1px solid #2a2d35;
+}
+.lg-toast-btn.secondary:hover {
+  background: #2a2d35;
+}

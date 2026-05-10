@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Legal Guardian</title>
+  <link rel="stylesheet" href="popup.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+    <header id="global-header" class="global-header" style="display: none;">
+      <div class="header-logo-container">
+        <img id="global-header-img" class="header-logo-img" alt="Logo" style="display: none;">
+        <span id="global-header-fallback">⚖️</span>
+      </div>
+      <div class="header-title-container">
+        <h1>Legal Guardian</h1>
+      </div>
+    </header>
+
+    <main>
+      <div id="initial-state" class="state-panel active initial-card">
+        <div class="lang-selector-row" id="lang-selector">
+          <button class="lang-pill active" data-lang="English">EN</button>
+          <button class="lang-pill" data-lang="Hindi">HI</button>
+          <button class="lang-pill" data-lang="Bengali">BN</button>
+        </div>
+
+        <div class="card-logo-container" id="logo-container">
+          <div class="fallback-logo">⚖️</div>
+        </div>
+        <h1 class="card-title">Legal Guardian</h1>
+        <p class="card-subtitle">Privacy Policy Analyzer</p>
+
+        <p class="description card-desc">Extract and analyze the privacy policy of the current page to uncover hidden
+          risks.</p>
+
+        <button id="analyze-btn" class="primary-btn bottom-btn">Analyze Page Context</button>
+      </div>
+
+      <div id="loading-state" class="state-panel hidden">
+        <div class="loading-icon-wrapper">
+          <div class="spinning-border"></div>
+          <div class="doc-icon">📄</div>
+        </div>
+        <h2 class="loading-title">Analyzing Document</h2>
+        <p class="loading-subtitle">Securely processing your legal data...</p>
+
+        <div class="loading-steps">
+          <div class="step" id="step-1">
+            <span class="step-icon step-pending">○</span>
+            <span class="step-text">Reading document...</span>
+          </div>
+          <div class="step" id="step-2">
+            <span class="step-icon step-pending">○</span>
+            <span class="step-text">Analyzing clauses...</span>
+          </div>
+          <div class="step" id="step-3">
+            <span class="step-icon step-pending">○</span>
+            <span class="step-text">Detecting risks...</span>
+          </div>
+        </div>
+
+        <div class="encryption-badge">
+          &lt; <span class="red-dot"></span> AES-256 ENCRYPTED ENVIRONMENT &gt;
+        </div>
+      </div>
+
+      <div id="results-state" class="state-panel hidden">
+
+        <div class="score-card">
+          <div class="score-circle-wrapper">
+            <svg class="score-svg" viewBox="0 0 100 100">
+              <circle class="score-bg" cx="50" cy="50" r="42"></circle>
+              <circle class="score-progress" cx="50" cy="50" r="42" id="score-progress-circle"></circle>
+            </svg>
+            <div class="score-text-wrapper">
+              <span id="risk-score">0</span><span class="score-max">/10</span>
+            </div>
+          </div>
+          <span class="score-label">Risk Score</span>
+        </div>
+
+
+        <div class="key-info-card">
+          <h3>Key Info</h3>
+          <ul id="key-info-list" class="key-info-list">
+            <li><strong>Parties:</strong> <span id="ki-parties">Loading...</span></li>
+            <li><strong>Type:</strong> <span id="ki-type">Loading...</span></li>
+            <li><strong>Key Dates:</strong> <span id="ki-dates">0 found</span></li>
+          </ul>
+        </div>
+
+
+        <div class="tabs-container">
+          <button class="tab-btn active" data-tab="summary">📋 Summary</button>
+          <button class="tab-btn" data-tab="advantages">✅ Pros</button>
+          <button class="tab-btn" data-tab="concerns">⚠️ Risks</button>
+        </div>
+
+
+        <div class="tab-content active" id="tab-summary">
+          <div class="content-card">
+            <div id="summary-text" class="text-content"></div>
+          </div>
+        </div>
+
+        <div class="tab-content" id="tab-advantages">
+          <div id="pros-list" class="points-container"></div>
+        </div>
+
+        <div class="tab-content" id="tab-concerns">
+          <div id="cons-list" class="points-container"></div>
+        </div>
+
+        <div class="results-actions">
+          <button id="open-chat-btn" class="primary-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;">
+              <path
+                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+              </path>
+            </svg>
+            Chat with AI
+          </button>
+          <div class="action-row">
+            <a href="https://legal-guardian.netlify.app/" target="_blank" class="secondary-btn dashboard-btn">↗
+              Dashboard</a>
+            <button id="export-pdf-btn" class="secondary-btn">📄 Save PDF</button>
+          </div>
+          <button id="back-btn" class="text-btn">Start Over</button>
+        </div>
+      </div>
+
+      <div id="chat-state" class="state-panel hidden">
+        <div class="chat-header">
+          <button id="close-chat-btn" class="icon-btn">←</button>
+          <h2>Legal Guardian AI</h2>
+        </div>
+        <div id="chat-messages" class="chat-messages">
+          <div class="message ai-message">
+            <div class="message-content">Hello! I've analyzed the document. What would you like to know?</div>
+          </div>
+        </div>
+        <form id="chat-form" class="chat-input-area">
+          <input type="text" id="chat-input" placeholder="Ask about a clause..." autocomplete="off" required>
+          <button type="submit" id="send-chat-btn" class="icon-btn send-btn">➤</button>
+        </form>
+      </div>
+
+      <div id="error-state" class="state-panel hidden">
+        <div class="error-icon">⚠️</div>
+        <p id="error-message">An error occurred while analyzing.</p>
+        <button id="retry-btn" class="secondary-btn">Try Again</button>
+      </div>
+    </main>
+  </div>
+  <script src="popup.js"></script>
+</body>
+
+</html>
